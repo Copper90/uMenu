@@ -28,7 +28,7 @@
         }
 
         body {
-            background-color: #101400;
+            background-color: var(--background);
         }
 
         .nav {
@@ -42,18 +42,19 @@
         .icnbtn {
             width: 50px;
             height: 50px;
-            background-color: #3aaf04;
+            background-color: var(--secondary);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition-duration: 100ms;
+            color: var(--text);
         }
 
         .icnbtn.selected {
             border-radius: 25px;
-            background-color: #e0fc78;
-            color: #101400;
+            background-color: var(--primary);
+            color: var(--background);
         }
 
         .flexgrow {
