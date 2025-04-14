@@ -121,8 +121,8 @@
     <div class="content"></div>
     <script>
         // Init
-        mainMenu = ["scripts", "tab", "browser", "more", "settings"];
-        for (i = 0; i < mainMenu.length; i++) {
+        const mainMenu = ["scripts", "tab", "browser", "more", "settings"];
+        for (let i = 0; i < mainMenu.length; i++) {
             document.getElementById(mainMenu[i] + "btn").addEventListener("click", function () {
                 document.querySelector(".selected").classList.remove("selected");
                 this.classList.add("selected");
@@ -131,7 +131,8 @@
 
         // closebtn
         document.getElementById("closebtn").addEventListener("click", function () {
-            window.close();
+            // Notify the parent window to close the iframe
+            window.parent.postMessage("close-iframe", "https://Copper90.github.io");
         });
     </script>
 </body>
