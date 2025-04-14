@@ -131,6 +131,7 @@
 
         // closebtn
         document.getElementById("closebtn").addEventListener("click", function () {
+            console.log("Close button clicked, sending message to parent...");
             // Notify the parent window to close the iframe
             window.parent.postMessage("close-iframe", "https://Copper90.github.io");
         });
