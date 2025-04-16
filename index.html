@@ -167,5 +167,10 @@
                 isDragging = false;
 
                 // Notify the parent window that dragging has stopped
-                window
-
+                window.parent.postMessage({ type: "stop-drag" }, "*");
+            }
+        });
+    </script>
+</body>
+
+</html>
