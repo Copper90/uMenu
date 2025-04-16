@@ -42,6 +42,7 @@
             align-items: center;
             gap: 10px;
             width: 100%;
+            cursor: move; /* Indicate draggable area */
         }
 
         .icnbtn {
@@ -85,7 +86,7 @@
 </head>
 
 <body>
-    <div class="nav">
+    <div class="nav" id="drag-bar">
         <div class="icnbtn selected" id="scriptsbtn">
             <span class="material-symbols-rounded">
                 code
@@ -135,7 +136,36 @@
             // Notify the parent window to close the iframe
             window.parent.postMessage("close-iframe-umenu", "*");
         });
-    </script>
-</body>
 
-</html>
+        // Drag logic for the top bar
+        const dragBar = document.getElementById("drag-bar");
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+
+        dragBar.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+
+            // Notify the parent window that dragging has started
+            window.parent.postMessage({ type: "start-drag", startX, startY }, "*");
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (isDragging) {
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+
+                // Notify the parent window of drag movement
+                window.parent.postMessage({ type: "dragging", currentX, currentY }, "*");
+            }
+        });
+
+        window.addEventListener("mouseup", () => {
+            if (isDragging) {
+                isDragging = false;
+
+                // Notify the parent window that dragging has stopped
+                window
+
